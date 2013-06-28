@@ -1,0 +1,186 @@
+﻿@{  
+    //Script.Include("http://cdn.kendostatic.com/2013.1.514/js/kendo.all.min.js").AtHead();
+    //Script.Include("jquery-1.9.1.min.js").AtHead();
+    
+    //Script.Require("KendoUI");
+    //Style.Require("Kendo_Default");  
+}
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="http://cdn.kendostatic.com/2013.1.514/js/kendo.all.min.js"></script>
+
+<input type="button" onclick="changeView(index)" value="view1">
+<input type="button" onclick="changeView(vista2)" value="view2">
+<input type="button" onclick="router.navigate('/p/1214541514515');" value="view2">
+
+
+<div id="app"></div>
+
+<script id="index" type="text/x-kendo-template">
+    Hello <span data-bind="text: foo"></span>
+    <br>
+    <a href="#">anchor</a>
+    <span data-bind="text: foo2"></span>
+</script>
+
+<script id="vistadiv" type="text/x-kendo-template">
+    esta es la vista <span data-bind="text: param"></span>
+</script>
+
+<script>
+    var index = new kendo.View(
+        "index", // the id of the script element that contains the view markup
+        { model: kendo.observable({ foo: "World!", foo2: "world22" }) }
+    );
+
+    var vista2 = new kendo.View(
+        "vistadiv", // the id of the script element that contains the view markup
+        { model: kendo.observable({ param: "Vista2" }) }
+    );
+
+    var layout = new kendo.Layout("<header>Header</header><section id='content'></section><footer></footer>")
+
+    var router = new kendo.Router();
+
+    router.route("/", function() {
+        layout.render("#app");
+    });
+    router.route("/p/:p", function (p) {
+        layout.showIn("#content", vista2);
+        alert(p)
+    });
+    $(function() {
+        router.start();
+    });
+
+    function changeView(a)
+    {
+        //vista2.render("#app");
+        //layout.showIn("#content", foo);
+        layout.showIn("#content", a);
+    }
+
+</script>
+
+
+
+
+
+@*<div class="container-fluid">
+    <div class="row-fluid span16">
+        <div class="carousel slide" id="myCarousel">
+            <div class="carousel-inner">
+              <div class="item active">
+                    <ul class="thumbnails">
+                        <li class="span3">
+                            <div class="caption">
+                                <h5>Caption1</h5>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/260x180" alt="">
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="caption">
+                                <h5>Caption2</h5>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/260x180" alt="">
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="caption">
+                                <h5>Caption3</h5>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/260x180" alt="">
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="caption">
+                                <h5>Caption4</h5>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/260x180" alt="">
+                            </div>
+                        </li>
+                    </ul>
+              </div>
+              <div class="item">
+                    <ul class="thumbnails">
+                        <li class="span3">
+                            <div class="caption">
+                                <h5>Caption5</h5>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/260x180" alt="">
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="caption">
+                                <h5>Caption6</h5>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/260x180" alt="">
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="caption">
+                                <h5>Caption7</h5>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/260x180" alt="">
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="caption">
+                                <h5>Caption8</h5>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/260x180" alt="">
+                            </div>
+                        </li>
+                    </ul>
+              </div>
+              <div class="item">
+                    <ul class="thumbnails">
+                        <li class="span3">
+                            <div class="caption">
+                                <h5>Caption9</h5>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/260x180" alt="">
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="caption">
+                                <h5>Caption10</h5>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/260x180" alt="">
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="caption">
+                                <h5>Caption11</h5>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/260x180" alt="">
+                            </div>
+                        </li>
+                        <li class="span3">
+                            <div class="caption">
+                                <h5>Caption12</h5>
+                            </div>
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/260x180" alt="">
+                            </div>
+                        </li>
+                    </ul>
+              </div>
+            </div>
+            <a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
+            <a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>
+        </div>
+    </div>
+</div>*@
